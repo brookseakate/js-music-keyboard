@@ -1,5 +1,4 @@
 var playAudio = function(letter) {
-  console.log("play " + letter);
   var audioId = $("#" + letter + "Audio")[0];
   audioId.load();
   audioId.play();
@@ -7,17 +6,18 @@ var playAudio = function(letter) {
 
 $(document).ready( function() {
   $('.note').on('click', function(event) {
-    var classes = $(this).attr('class');
-    // var classArr = Array.from(classes);
-    console.log("Classes: " + classes);
-    // console.log("classArr: " + classArr);
-    console.log("Classes[5]: " + classes[5]); // @TODO: make this better
-    var letter = classes[5];
+    var letter = $(this).html();
     playAudio(letter);
   });
 
-  $('body').keydown(function(event) {
-    console.log("Key: "+ event.key);
-    playAudio(event.key);
+  $('body').keypress(function(event) {
+    var letter = event.key;
+    var range = /[a-g]/;
+    console.log(range.test(letter));
+    if (range.test(letter)) {
+      playAudio(letter);
+    } else {
+      alert("Please play a key, A-G!");
+    }
   });
 });
