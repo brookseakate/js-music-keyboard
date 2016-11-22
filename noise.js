@@ -10,7 +10,7 @@ $(document).ready( function() {
     playAudio(letter);
   });
 
-  $('body').keypress(function(event) {
+  $(this).keypress(function(event) {
     var letter = event.key;
     var range = /[a-g]/;
     console.log(range.test(letter));
