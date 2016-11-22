@@ -4,20 +4,22 @@ var playAudio = function(letter) {
   audioId.play();
 };
 
-$(document).ready( function() {
-  $('.note').on('click', function(event) {
-    var letter = $(this).html();
-    playAudio(letter);
-  });
+var clickPlay = function() {
+  var letter = $(this).html();
+  playAudio(letter);
+};
 
-  $(this).keypress(function(event) {
-    var letter = event.key;
-    var range = /[a-g]/;
-    console.log(range.test(letter));
-    if (range.test(letter)) {
-      playAudio(letter);
-    } else {
-      alert("Please play a key, A-G!");
-    }
-  });
+var keyPlay = function(event) {
+  var key = event.key;
+  var range = /[a-g]/;
+  if (range.test(key)) {
+    playAudio(key);
+  } else {
+    alert("Please play a key, A-G!");
+  }
+};
+
+$(document).ready( function() {
+  $('.note').on('click', clickPlay);
+  $(this).keypress(keyPlay);
 });
